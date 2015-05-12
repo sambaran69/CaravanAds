@@ -1,0 +1,83 @@
+﻿<div class="panel panel-primary" ng-controller="CaravanDetailCtrl as vm">
+    <div class="panel-heading" style="font-size: large">
+        <div class="panel-title">
+            <span>{{vm.selectedCaravan.title}}</span>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="container slider">
+            <img ng-repeat="slide in vm.slides" class="slide slide-animation nonDraggableImage"
+                ng-hide="!isCurrentSlideIndex($index)" ng-src="{{slide.image}}">
+
+            <a class="arrow prev" href="#" ng-click="nextSlide()"></a>
+            <a class="arrow next" href="#" ng-click="prevSlide()"></a>
+            <nav class="nav">
+                <div class="wrapper">
+                    <ul class="dots">
+                        <li class="dot" ng-repeat="slide in vm.slides">
+                            <a href="#" ng-class="{'active':isCurrentSlideIndex($index)}"
+                                ng-click="setCurrentSlideIndex($index);">{{slide.description}}</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <h3>Seller Details</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>E-Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ vm.selectedCaravan.seller.name }}</td>
+                    <td>{{ vm.selectedCaravan.seller.suburb }}, {{ vm.selectedCaravan.seller.state }} {{ vm.selectedCaravan.seller.postcode }}, {{ vm.selectedCaravan.seller.country }}</td>
+                    <td>{{ vm.selectedCaravan.seller.emailAddress }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <h3>Specifications</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Vehicle Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attribute in vm.selectedCaravan.specification.attributes | filter:vehicleFilter">
+                    <td>{{ attribute.displayName }}</td>
+                    <td>{{ attribute.value }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Product Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attribute in vm.selectedCaravan.specification.attributes | filter:productFilter">
+                    <td>{{ attribute.displayName }}</td>
+                    <td>{{ attribute.value }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Cabin Features</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="attribute in vm.selectedCaravan.specification.attributes | filter:cabinFilter">
+                    <td>{{ attribute.displayName }}</td>
+                    <td>{{ attribute.value }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

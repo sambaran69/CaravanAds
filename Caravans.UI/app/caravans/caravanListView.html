@@ -1,0 +1,110 @@
+﻿<div class="panel panel-primary"
+    ng-controller="CaravanListCtrl as vm">
+    <div class="panel-heading" style="font-size: large">
+        <div class="panel-title">
+            <span class="glyphicon glyphicon-music"></span>
+            &nbsp;
+            <span>Caravans List</span>
+            <div class="btn-group pull-right">
+                <div class="btn-group" style="margin: 5px; margin-top: -0.40em;" ng-class="{open: vm.stateSelectOpen}">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" ng-click="vm.openStateDropdown()">
+                        {{vm.selectedState}}&nbsp; <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="vm.setState('Victoria')">Victoria</a></li>
+                        <li><a href="#" ng-click="vm.setState('Queensland')">Queensland</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" ng-click="vm.setState('State')">All States</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group" style="margin: 5px; margin-top: -0.40em;" ng-class="{open: vm.makeSelectOpen}">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" ng-click="vm.openMakeDropdown()">
+                        {{vm.selectedMake}}&nbsp; <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" ng-click="vm.setMake('Jayco')">Jayco</a></li>
+                        <li><a href="#" ng-click="vm.setMake('Coromal')">Coromal</a></li>
+                        <li><a href="#" ng-click="vm.setMake('Complete')">Complete</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#" ng-click="vm.setMake('Make')">All Makes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="col-sm-6 col-md-4 col-lg-4" ng-class="vm.cardAnimationClass" ng-repeat="caravan in vm.caravans">
+            <div class="card">
+                <div class="cardHeader"><a ui-sref="detail({caravanId: caravan.recordId})"><i class="icon-edit icon-white editIcon"></i>{{ caravan.title }}</a></div>
+                <div class="cardBody">
+                    <!--<div class="clearfix">-->
+                    <div class="pull-left cardBodyLeft">
+                        <a ui-sref="detail({caravanId: caravan.recordId})" class="white">
+                            <img data-ng-src="{{ caravan.media.photos[0] }}" /></a>
+                    </div>
+                    <div class="pull-left cardBodyRight">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>Category:</td>
+                                    <td>
+                                        <div class="cardBodyContent">{{ caravan.category }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sub Category:</td>
+                                    <td>
+                                        <div class="cardBodyContent">{{ caravan.subCategory }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Listing Type:</td>
+                                    <td>
+                                        <div class="cardBodyContent">{{ caravan.listingType }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sale Status:</td>
+                                    <td>
+                                        <div class="cardBodyContent">{{ caravan.saleStatus }}</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Price:</td>
+                                    <td>
+                                        <div>
+                                            <a ui-sref="detail({caravanId: caravan.recordId})" class="btn-link">{{ caravan.price | currency }}</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagination">
+            <ul class="pagination-control pagination">
+                <li>
+                    <span>Items {{vm.searchContext.recordOffset + 1}} to {{vm.searchContext.recordOffset + vm.searchContext.numberOfItems}} of {{vm.totalItems}}</span>
+                </li>
+            </ul>
+            <ul class="pagination-control pagination">
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="vm.prevPageDisabled()" ng-click="vm.prevPage()">
+                        &lt; PREV
+                    </button>
+                </li>
+                <li>
+                    <span>Displaying: Page {{vm.currentPage + 1}} of 3</span>
+                </li>
+                <li>
+                    <button type="button" class="btn btn-primary" ng-disabled="vm.nextPageDisabled()" ng-click="vm.nextPage()">
+                        NEXT &gt;
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

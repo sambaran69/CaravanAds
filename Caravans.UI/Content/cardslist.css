@@ -1,0 +1,74 @@
+﻿.white {
+    color: white;
+}
+
+.white:hover{
+    color: white;
+}
+
+.card {
+    background-color:#fff;
+    border: 1px solid #d4d4d4;
+    height:250px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.cardHeader {
+    background-color:rgba(2, 244, 133, 0.53);
+    font-size:14pt;
+    color:white;
+    padding:5px;
+    width:100%;
+}
+
+.cardClose {
+    color: white;
+    font-weight:bold;
+    margin-right:5px;
+}
+
+.cardContainer {
+    width:85%;
+}
+
+.cardBody {
+    padding-left: 10px;
+}
+
+.cardBodyLeft {
+    width: 35%;
+    margin-top: -5px;
+}
+
+.cardBodyRight {
+    width: 55%;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 10pt;
+}
+
+.table {
+    height: 90%;
+    table-layout: fixed;
+}
+
+table td { overflow: hidden; }
+
+.cardBodyContent {
+    width: 80%;
+}
+
+.cardBody img {
+    width: 95%; /* you can use % */
+    height: 150px;
+    margin-top:10px;
+}
+
+.lastRow {
+    background-color: #ccc;
+}
+
+.indent {
+    margin-left:5px;
+}
